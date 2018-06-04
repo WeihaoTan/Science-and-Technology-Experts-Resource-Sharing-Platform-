@@ -8,7 +8,7 @@ import urllib.parse
 import re
 
 global conn
-conn = pymongo.MongoReplicaSetClient('mongodb://%s:%s@%s/SpiderResult' % ("spider", "spider", "123.206.16.212:27017"))
+conn = pymongo.MongoReplicaSetClient('mongodb://%s:%s@%s/SpiderResult' % ("spider", "spider", "ip:port"))
 global db
 global counter
 counter=0
@@ -27,11 +27,11 @@ class ScholarSpider(Spider):
         school_list.append(line)
         line=f.readline()
     print(school_list)
-    school="北京航空航天大学"
+    #school="北京航空航天大学"
     allowed_domains = ["cnki.net"]
     start_urls = [];
 
-    for j in range(0,2):
+    for j in range(0,len(school_list)):
         for i in range(1,70):
             url_string = "http://papers.cnki.net/View/DataCenter/Scholar.ashx?nmt=nm&sm=1&nmv=&id=SC&db=0&cp="+str(i)+"&ck=d6adaba7-1623-41bb-8c1e-18ece5b29ee1&p=&uid=-1&ut="+school_list[j]
             start_urls.append(url_string)
