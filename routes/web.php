@@ -37,10 +37,10 @@ Route::get('expert/showPaper', 'ExpertController@showPaper');
 
 
 //（专家）查看拥有的专利
-Route::get('expert/modPatent', 'ExpertController@showPatent');
+Route::get('expert/showPatent', 'ExpertController@showPatent');
 
 //（专家）修改拥有的专利
-Route::post('expert/addPatent', 'ExpertController@modPatent');
+Route::post('expert/modPatent', 'ExpertController@modPatent');
 
 //（专家）添加拥有的专利
 Route::post('expert/addPatent', 'ExpertController@addPatent');

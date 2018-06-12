@@ -81,11 +81,11 @@ class ExpertController extends Controller{
 
     //专家添加个人专利
     public function addPatent(Request $request){
-        $patent_id = $request->input('patent_id');
+        $expert_id = $request->input('expert_id');
         $title = $request->input('title');
         $information = $request->input('information');
         $patent = new Patent();
-        return $patent->expertAdd($patent_id, $title, $information);
+        return $patent->expertAdd($expert_id, $title, $information);
     }
 
     //专家删除个人专利
