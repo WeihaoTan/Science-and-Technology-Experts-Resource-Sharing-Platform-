@@ -45,6 +45,9 @@ Route::post('expert/addPatent', 'ExpertController@modPatent');
 //（专家）添加拥有的专利
 Route::post('expert/addPatent', 'ExpertController@addPatent');
 
+//（管理员）查看认证列表
+Route::get('admin/showAuthentication', 'AdminController@showAuthenticationList');
+
 //（管理员）查看认证
 Route::get('admin/showAuthentication', 'AdminController@showAuthentication');
 
@@ -59,12 +62,3 @@ Route::get('admin/showFeedbackList', 'AdminController@showFeedbackList');
 
 //（管理员）查看反馈详情
 Route::get('admin/showFeedback', 'AdminController@showFeedback');
-
-
-
-
-/*
-Route::get('expert/applyMessage', function (){
-    return $results = DB::select('select * from expert', array(1));
-});
-*/

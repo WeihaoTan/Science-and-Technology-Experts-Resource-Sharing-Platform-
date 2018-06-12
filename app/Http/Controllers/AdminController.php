@@ -23,6 +23,12 @@ class AdminController extends Controller{
         return $authentication->showAuthentication($admin_id);
     }
 
+    public function showAuthenticationList(Request $request){
+        $auth_id = $request->input('auth_id');
+        $authentication = new Authentication();
+        return $authentication->showAuthentication($auth_id);
+    }
+
     public function reviewAuthentication(Request $request){
         $auth_id = $request->input('auth_id');
         $authentication = new Authentication();
