@@ -1,0 +1,50 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: iamfitz
+ * Date: 2018/6/8
+ * Time: 18:03
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Models\paper;
+use Illuminate\Http\Request;
+
+class paperController extends Controller
+{   protected $paperModel;
+    protected $requestData;
+    public function __construct(){
+        $this->paperModel = new paper();
+        $this->requestData = [];
+    }
+
+    ///论文列表
+    /// 关键词、题名
+    /// 发表时间
+    public function getPaperList(Request $request){
+        $this->requestData += array('paper_keywords'=>$request->input('paper_keywords','%'));
+        $this->requestData += array('paper_name'=>$request->input('paper_name','%'));
+
+        //时间范围
+        $this->requestData += array('start_time'=>$request
+                                  ->input('start_time','1970-1-1'));
+        $this->requestData += array('end_time'=>$request
+                                  ->input('end_time',date('Y-m-d',time())));
+        return response()->json([
+            'status'=>1,
+            'msg'=>'success',
+            'data'=>$this->paperModel
+                         ->paperList($this->requestData)]);
+    }
+
+    ////某篇论文的所有信息
+    public function getPaperInfo(Request $request){
+        return response()->json([
+            'status'=>1,
+            'msg'=>'success',
+            'data'=>$this->paperModel
+                         ->paperInfo($request->input('paper_id'))]);
+    }
+}
