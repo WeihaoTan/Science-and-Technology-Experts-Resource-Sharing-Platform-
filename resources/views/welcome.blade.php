@@ -89,6 +89,21 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+				
+				
+				
+				<!-- 以下为测试代码-->
+				<form action="/user/authentication" method="post">
+				{{ csrf_field() }}
+					<input type="text" name="id">id</input>
+					<input type="text" name="info">info</input>
+					
+					<input type="submit">submit</input>
+				</form>
+				
+				
+				
+				<!--测试代码结束 -->
             </div>
         </div>
     </body>

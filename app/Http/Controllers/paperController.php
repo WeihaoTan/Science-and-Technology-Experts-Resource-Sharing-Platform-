@@ -1,6 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
+<<<<<<< HEAD
  * User: iamfitz
  * Date: 2018/6/8
  * Time: 18:03
@@ -46,5 +47,14 @@ class paperController extends Controller
             'msg'=>'success',
             'data'=>$this->paperModel
                          ->paperInfo($request->input('paper_id'))]);
+    }
+    /**
+     * 获取论文下载地址
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function download(Request $request)
+    {
+        return response()->json(['status'=>1,'msg'=>'success','data'=>$this->paper->download($request['paper_id'])]);
     }
 }
