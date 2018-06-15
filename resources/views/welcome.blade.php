@@ -100,7 +100,7 @@
 					
 					<input type="submit">submit</input>
 				</form>
-				
+				<a href="/"
 				
 				
 				<!--测试代码结束 -->
