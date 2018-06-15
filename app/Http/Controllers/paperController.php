@@ -55,6 +55,6 @@ class paperController extends Controller
      */
     public function download(Request $request)
     {
-        return response()->json(['status'=>1,'msg'=>'success','data'=>$this->paper->download($request['paper_id'])]);
+        return response()->json(['status'=>1,'msg'=>'success','data'=>$this->paperModel->download($request['paper_id'])]);
     }
 }

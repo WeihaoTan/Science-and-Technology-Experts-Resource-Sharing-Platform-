@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 //专家相关
 //获得专家列表
-Route::get('expertList','expertController@getExpertList');
+Route::get('expertList','expertController@getexpertList');
 //获得某个专家的所有信息
-Route::get('expertInfo','expertController@getExpertInfo');
+Route::get('expertInfo','expertController@getexpertInfo');
 
 //论文
 //获得论文列表
@@ -68,7 +68,7 @@ Route::get('/history/request', 'historyController@getApplybyUser');
 #查看用户收藏夹
 Route::get('/collection', 'collectionController@viewFolder');
 #查看收藏的专家
-Route::get('/collection/expert', 'collectionController@viewExpert');
+Route::get('/collection/expert', 'collectionController@viewexpert');
 #查看收藏的论文
 Route::get('/collection/paper', 'collectionController@viewPaper');
 #新建收藏夹
@@ -105,45 +105,45 @@ Route::get('testData', function () {
 });
 
 //（专家）查看申请信息
-Route::get('expert/showApplyMessage', 'ExpertController@showPaperApply');
+Route::get('expert/showApplyMessage', 'expertController@showPaperApply');
 
 //（专家）处理申请信息
-Route::post('expert/dealApplyMessage', 'ExpertController@dealPaperApply');
+Route::post('expert/dealApplyMessage', 'expertController@dealPaperApply');
 
 //（专家）查看个人信息
-Route::get('expert/showInfo', 'ExpertController@showInfo');
+Route::get('expert/showInfo', 'expertController@showInfo');
 
 //（专家）修改个人信息
-Route::post('expert/modInfo', 'ExpertController@modInfo');
+Route::post('expert/modInfo', 'expertController@modInfo');
 
 //（专家）查看拥有的论文
-Route::get('expert/showPaper', 'ExpertController@showPaper');
+Route::get('expert/showPaper', 'expertController@showPaper');
 
 
 //（专家）查看拥有的专利
-Route::get('expert/showPatent', 'ExpertController@showPatent');
+Route::get('expert/showPatent', 'expertController@showPatent');
 
 //（专家）修改拥有的专利
-Route::post('expert/modPatent', 'ExpertController@modPatent');
+Route::post('expert/modPatent', 'expertController@modPatent');
 
 //（专家）添加拥有的专利
-Route::post('expert/addPatent', 'ExpertController@addPatent');
+Route::post('expert/addPatent', 'expertController@addPatent');
 
 //（管理员）查看认证列表
-Route::get('admin/showAuthentication', 'AdminController@showAuthenticationList');
+Route::get('admin/showAuthentication', 'adminController@showAuthenticationList');
 
 //（管理员）查看认证
-Route::get('admin/showAuthentication', 'AdminController@showAuthentication');
+Route::get('admin/showAuthentication', 'adminController@showAuthentication');
 
 //（管理员）审核认证
-Route::post('admin/reviewAuthentication', 'AdminController@reviewAuthentication');
+Route::post('admin/reviewAuthentication', 'adminController@reviewAuthentication');
 
 //（管理员）屏蔽用户账号（暂时未实现）
-//Route::post('expert/banUser', 'AdminController@banUser');
+//Route::post('expert/banUser', 'adminController@banUser');
 
 //（管理员）查看反馈列表
-Route::get('admin/showFeedbackList', 'AdminController@showFeedbackList');
+Route::get('admin/showFeedbackList', 'adminController@showFeedbackList');
 
 //（管理员）查看反馈详情
-Route::get('admin/showFeedback', 'AdminController@showFeedback');
+Route::get('admin/showFeedback', 'adminController@showFeedback');
 

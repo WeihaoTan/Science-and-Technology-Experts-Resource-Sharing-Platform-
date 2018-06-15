@@ -2,13 +2,13 @@
     <head>
         <title>hello</title>
     </head>
-    <form action="expert/showPatent" method="get">
+    <form action="expert/addPatent" method="post">
         <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
 
 
         testData1: <input type="text" name="expert_id" />
-        testData2: <input type="text" name="institution" />
-        testData3: <input type="text" name="title" />
+        testData2: <input type="text" name="title" />
+        testData3: <input type="text" name="information" />
         testData4: <input type="text" name="educational_experience" />
         testData5: <input type="text" name="occupational_experience" />
         testData6: <input type="text" name="award_winning_experience" />

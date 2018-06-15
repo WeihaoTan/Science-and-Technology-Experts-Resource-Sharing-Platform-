@@ -16,7 +16,7 @@ use App\User;
 use App\Authentication;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller{
+class adminController extends Controller{
     public function showAuthentication(Request $request){
         $admin_id = $request->input('admin_id');
         $authentication = new Authentication();
