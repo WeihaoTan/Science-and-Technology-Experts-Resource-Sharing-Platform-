@@ -22,4 +22,20 @@ class patent extends Model
     public function patentInfo(int $id){
         return $this::where('patent_id',$id)->get();
     }
+    public function expertShow($expert_id){
+        return $this->where('expert_id', $expert_id)->get();
+    }
+
+    public function expertMod($patent_id, $title, $information){
+        return $this->where('patent_id', $patent_id)
+            ->update(['title' => $title, 'information' => $information]);
+    }
+
+    public function expertAdd($expert_id, $title, $information){
+        return $this->insertGetId(['expert_id' => $expert_id, 'title' => $title, 'information' => $information]);
+    }
+
+    public function expertDelete($patent_id){
+        return $this->where('patent_id', $patent_id)->delete();
+    }
 }

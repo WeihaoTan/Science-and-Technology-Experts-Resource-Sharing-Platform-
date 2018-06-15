@@ -37,6 +37,19 @@ class collection extends Model
     }
 
     /**
+     * 新建申请论文收藏
+     * @param $user_id
+     * @param $url
+     * @param $title
+     * @param $parent
+     * @return mixed
+     */
+    public function newAppliedItem($user_id,$url,$title,$parent)
+    {
+        return $this::insert(['user_id'=>$user_id,'url'=>$url,'title'=>$title,'parent'=>$parent, 'applied'=>1]);
+    }
+
+    /**
      * 删除收藏
      * @param $user_id
      * @param $item_id

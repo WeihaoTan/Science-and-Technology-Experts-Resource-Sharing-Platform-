@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Models\expert;
+use App\Http\Models\collection;
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
 use App\Paper;
@@ -71,6 +72,11 @@ class expertController extends Controller{
         $status = $request->input('status');
         $expert_response = $request->input('expert_response');
         $paperApply = new PaperApply();
+
+
+        $collection = new Collection();
+        $collection->newAppliedItem($request['user_id'],$request['url'],$request['title'],$request['parent']);
+
         return $paperApply->expertDeal($paper_apply_id, $status, $expert_response);
     }
     //专家查看个人论文

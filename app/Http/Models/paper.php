@@ -39,4 +39,8 @@ class paper extends Model
     {
         return $this::whereRaw('paper_id = ?',[$paper_id])->get()[0]['url'];
     }
+    public function expertShow($expert_id){
+        return $this->where('first_author_id', $expert_id)->get();
+    }
+
 }

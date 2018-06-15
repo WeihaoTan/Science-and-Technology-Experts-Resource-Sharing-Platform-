@@ -23,4 +23,19 @@ class feedback extends Model
         $request += array('submit_time'=>date('Y-m-d H:i:s', time()));
         $this::create($request);
     }
+    public function showFeedbackList($admin_id){
+
+        $result = $this->join('user', 'feedback.user_id', '=', 'user.user_id')
+            ->latest('request_time')
+            ->select('user.name', 'user.profile_picture', 'feedback.submit_time', 'feedback.topic', 'feedback.info')
+            ->get();
+        return $result;
+    }
+
+    public function showFeedback($feedback_id){
+        return $this->where('auth_id', $feedback_id)
+            ->join('user', 'feedback.user_id', '=', 'user.user_id')
+            ->select('user.name', 'user.profile_picture', 'feedback.submit_time', 'feedback.topic', 'feedback.info')
+            ->get();
+    }
 }
