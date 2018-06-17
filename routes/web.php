@@ -138,8 +138,6 @@ Route::get('admin/showAuthentication', 'adminController@showAuthentication');
 //（管理员）审核认证
 Route::post('admin/reviewAuthentication', 'adminController@reviewAuthentication');
 
-//（管理员）屏蔽用户账号（暂时未实现）
-//Route::post('expert/banUser', 'adminController@banUser');
 
 //（管理员）查看反馈列表
 Route::get('admin/showFeedbackList', 'adminController@showFeedbackList');

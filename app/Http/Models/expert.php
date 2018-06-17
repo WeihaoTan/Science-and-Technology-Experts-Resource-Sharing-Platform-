@@ -48,4 +48,13 @@ class expert extends Model
                 'occupational_experience' => $occupational_experience, 'award_winning_experience' => $award_winning_experience,
                 'field' => $field, 'expert_name' => $expert_name]);
     }
+
+    public function reviewAuthentication($user_id, $expert_id, $status)
+    {
+        if ($status == 1)
+        {
+            $this->where('expert_id', $expert_id)
+                ->update(['user_id' => $user_id]);
+        }
+    }
 }

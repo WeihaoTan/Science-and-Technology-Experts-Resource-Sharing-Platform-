@@ -67,4 +67,16 @@ class user extends Model
         $status=$this::insert(['account'=>$name,'mail'=>$mail,'password'=>$passwd]);
         return $status;
     }
+
+    public function reviewAuthentication($user_id, $status)
+    {
+        if ($status == 1)
+        {
+            $this->where('user_id', $user_id)
+                ->update(['is_expert' => $status]);
+        }
+    }
+
+
+
 }

@@ -12,7 +12,7 @@ use App\Feedback;
 use App\Paper;
 use App\PaperApply;
 use App\Patent;
-use App\User;
+use App\Http\Models\user;
 use App\Authentication;
 use Illuminate\Http\Request;
 
@@ -31,8 +31,19 @@ class adminController extends Controller{
 
     public function reviewAuthentication(Request $request){
         $auth_id = $request->input('auth_id');
+        $user_id = $request->input('user_id');
+        $expert_id = $request->input('expert_id');
+        $status = $request->input('status');
         $authentication = new Authentication();
-        return $authentication->reviewAuthentication($auth_id);
+        $authentication->reviewAuthentication($auth_id, $status);
+
+        $user = new user();
+        $user->reviewAuthentication($user_id, $status);
+
+        $expert = new \App\Http\Models\expert();
+        $expert->reviewAuthentication($user_id, $expert_id, $status);
+
+        return 1;
     }
 
     public function showFeedbackList(Request $request){
