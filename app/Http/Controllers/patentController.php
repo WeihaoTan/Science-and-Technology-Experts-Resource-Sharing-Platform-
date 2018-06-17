@@ -9,13 +9,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Models\patent;
 use Illuminate\Http\Request;
 
 class patentController extends Controller
 {
     protected $patentModel;
     public function __construct(){
-        $this->patentModel = new parent();
+        $this->patentModel = new patent();
     }
 
     //专利标题 获取专利列表
