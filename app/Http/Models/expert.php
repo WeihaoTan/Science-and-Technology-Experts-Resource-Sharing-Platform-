@@ -36,7 +36,7 @@ class expert extends Model
         return $this->hasMany('App\Http\Models\paper','first_author_id','expert_id');
     }
     public function patents(){
-        return $this->hasMany('App\Http\Models\patent','user_id','expert_id');
+        return $this->hasMany('App\Http\Models\patent','expert_id','expert_id');
     }
     public function showInfo($expert_id){
         return $this->where('expert_id', $expert_id)->get();
