@@ -18,14 +18,14 @@ class Feedback extends Model
     public function showFeedbackList($admin_id){
 
         $result = $this->join('user', 'feedback.user_id', '=', 'user.user_id')
-            ->latest('request_time')
+            ->latest('feedback.submit_time')
             ->select('user.name', 'user.profile_picture', 'feedback.submit_time', 'feedback.topic', 'feedback.info')
             ->get();
         return $result;
     }
 
     public function showFeedback($feedback_id){
-        return $this->where('auth_id', $feedback_id)
+        return $this->where('feedback_id', $feedback_id)
             ->join('user', 'feedback.user_id', '=', 'user.user_id')
             ->select('user.name', 'user.profile_picture', 'feedback.submit_time', 'feedback.topic', 'feedback.info')
             ->get();

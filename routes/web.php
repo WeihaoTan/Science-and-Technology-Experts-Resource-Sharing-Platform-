@@ -132,7 +132,7 @@ Route::post('expert/modPatent', 'expertController@modPatent');
 Route::post('expert/addPatent', 'expertController@addPatent');
 
 //（管理员）查看认证列表
-Route::get('admin/showAuthentication', 'adminController@showAuthenticationList');
+Route::get('admin/showAuthenticationList', 'adminController@showAuthenticationList');
 
 //（管理员）查看认证
 Route::get('admin/showAuthentication', 'adminController@showAuthentication');
