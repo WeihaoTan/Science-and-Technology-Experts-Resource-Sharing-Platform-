@@ -18,15 +18,15 @@ use Illuminate\Http\Request;
 
 class adminController extends Controller{
     public function showAuthentication(Request $request){
-        $admin_id = $request->input('admin_id');
-        $authentication = new Authentication();
-        return $authentication->showAuthentication($admin_id);
-    }
-
-    public function showAuthenticationList(Request $request){
         $auth_id = $request->input('auth_id');
         $authentication = new Authentication();
         return $authentication->showAuthentication($auth_id);
+    }
+
+    public function showAuthenticationList(Request $request){
+        $admin_id = $request->input('admin_id');
+        $authentication = new Authentication();
+        return $authentication->showAuthentication($admin_id);
     }
 
     public function reviewAuthentication(Request $request){
