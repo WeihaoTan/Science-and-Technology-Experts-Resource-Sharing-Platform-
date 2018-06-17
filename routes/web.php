@@ -30,7 +30,7 @@ Route::get('paperInfo','paperController@getPaperInfo');
 //获得专利列表
 Route::get('patentList','patentController@getPatentList');
 //获得某个专利的所有信息
-Route::get('patentInfo','patentController@getpatentInfo');
+Route::get('patentInfo','patentController@getPatentInfo');
 
 //申请论文全文
 Route::post('applyFull','paperApplyController@applyFull');
