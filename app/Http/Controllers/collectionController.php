@@ -56,6 +56,16 @@ class collectionController extends Controller
     }
 
     /**
+     * 查看其他收藏夹
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function viewOther(Request $request)
+    {
+        return response()->json(['status'=>1,'msg'=>'success','data'=>$this->collection->viewCollectionsbyFolder($request['user_id'],$request['folder_id'])->toArray()]);
+    }
+
+    /**
      * 新建收藏夹
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

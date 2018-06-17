@@ -10,6 +10,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Models\folder;
 use App\Http\Models\user;
 use function foo\func;
 use Illuminate\Http\Request;
@@ -17,9 +18,10 @@ use Illuminate\Http\Request;
 class userController extends Controller
 {
     protected $userModel;
+    protected $folder;
     public function __construct(){
         $this->userModel = new user();
-
+        $this->folder=new folder();
     }
     public function getProfile(Request $request){
         return response()->json([
@@ -54,11 +56,23 @@ class userController extends Controller
      */
     public  function login(Request $request)
     {
-        return response()->json(['status'=>(int)($this->userModel->login($request['name'],$request['passwd']))]);
+        return response()->json(['data'=>(int)($this->userModel->login($request['name'],$request['passwd']))]);
     }
 
+    /**
+     * 注册
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function  signup(Request $request)
     {
-        return response()->json(['status'=>(int)($this->userModel->signup($request['name'],$request['mail'],$request['passwd']))]);
+        $user_id=(int)($this->userModel->signup($request['name'],$request['mail'],$request['passwd']));
+        #echo $user_id;
+        if($user_id != -1)
+        {
+            $this->folder->newFolder($user_id,'expert');
+            $this->folder->newFolder($user_id,'paper');
+        }
+        return response()->json(['data'=>$user_id]);
     }
 }

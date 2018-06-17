@@ -68,9 +68,11 @@ Route::get('/history/request', 'historyController@getApplybyUser');
 #查看用户收藏夹
 Route::get('/collection', 'collectionController@viewFolder');
 #查看收藏的专家
-Route::get('/collection/expert', 'collectionController@viewexpert');
+Route::get('/collection/expert', 'collectionController@viewExpert');
 #查看收藏的论文
 Route::get('/collection/paper', 'collectionController@viewPaper');
+#查看其他收藏夹
+Route::get('/collection/other', 'collectionController@viewOther');
 #新建收藏夹
 Route::post('/collection/dir/new', 'collectionController@newFolder');
 #删除收藏夹
