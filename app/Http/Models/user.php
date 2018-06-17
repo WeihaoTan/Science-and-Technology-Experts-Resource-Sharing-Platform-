@@ -38,22 +38,24 @@ class user extends Model
     }
 
     /**
-     * 登录，检查用户名（邮箱）与密码是否匹配
+     * 登录，检查用户名（邮箱）与密码是否匹配，返回用户ID
      * @param $name
      * @param $passwd
-     * @return bool
+     * @return int
      */
     public function login($name,$passwd)
     {
-        $count=$this::whereRaw('(account = ? and password = ?) or (mail = ? and password = ?)',[$name,$passwd,$name,$passwd])->count();
+        #$count=$this::whereRaw('(account = ? and password = ?) or (mail = ? and password = ?)',[$name,$passwd,$name,$passwd])->count();
+        $user=$this::select('user_id')->whereRaw('(account = ? and password = ?) or (mail = ? and password = ?)',[$name,$passwd,$name,$passwd])->get();
+        $count= count($user);
         if($count!= 0)
-            return true;
+            return $user[0]['user_id'];
         else
-            return false;
+            return -1;
     }
 
     /**
-     * 注册，用户名与邮箱任何一个都不能冲突
+     * 注册，用户名与邮箱任何一个都不能冲突，注册成功返回用户id，失败返回-1
      * @param $name
      * @param $mail
      * @param $passwd
@@ -63,9 +65,10 @@ class user extends Model
     {
         $conflit=$this::whereRaw('account = ? or mail = ?',[$name, $mail])->count();
         if ($conflit != 0)
-            return false;
-        $status=$this::insert(['account'=>$name,'mail'=>$mail,'password'=>$passwd]);
-        return $status;
+            return -1;
+        $this::insert(['account'=>$name,'mail'=>$mail,'password'=>$passwd]);
+        $id=$this::select('user_id')->whereRaw('account = ?',[$name])->get()[0]['user_id'];
+        return $id;
     }
 
     public function reviewAuthentication($user_id, $status)

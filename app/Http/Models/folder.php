@@ -18,16 +18,9 @@ class folder extends Model
      * @param null $title
      * @return mixed
      */
-    public function viewbyUser($id, $title=null)
+    public function viewbyUser($id)
     {
-        if($title != null)
-        {
-            return $this::whereRaw('user_id = ? and title = ?',[$id,$title])->get();
-        }
-        else
-        {
-            return $this::whereRaw('user_id = ?',[$id])->get();
-        }
+        return $this::whereRaw('user_id = ?',[$id])->get();
     }
 
     /**
