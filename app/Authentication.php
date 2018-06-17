@@ -23,9 +23,12 @@ class Authentication extends Model
         return $this->where('auth_id', $auth_id)->get();
     }
 
-    public function reviewAuthentication($auth_id){
-        return $this->where('auth_id', $auth_id)->get();
-        //不知道专家交上来了什么，待实现
+    public function reviewAuthentication($auth_id, $status){
+        if ($status == 1)
+        {
+            $this->where('auth_id', $auth_id)
+                ->update(['status' => $status]);
+        }
     }
 
 }

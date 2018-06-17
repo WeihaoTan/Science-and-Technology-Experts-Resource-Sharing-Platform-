@@ -70,4 +70,16 @@ class user extends Model
         $id=$this::select('user_id')->whereRaw('account = ?',[$name])->get()[0]['user_id'];
         return $id;
     }
+
+    public function reviewAuthentication($user_id, $status)
+    {
+        if ($status == 1)
+        {
+            $this->where('user_id', $user_id)
+                ->update(['is_expert' => $status]);
+        }
+    }
+
+
+
 }
