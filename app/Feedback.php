@@ -19,7 +19,7 @@ class Feedback extends Model
 
         $result = $this->join('user', 'feedback.user_id', '=', 'user.user_id')
             ->latest('feedback.submit_time')
-            ->select('user.name', 'user.profile_picture', 'feedback.submit_time', 'feedback.topic', 'feedback.info')
+            ->select('user.name', 'user.profile_picture', 'feedback_id', 'feedback.submit_time', 'feedback.topic', 'feedback.info')
             ->get();
         return $result;
     }
