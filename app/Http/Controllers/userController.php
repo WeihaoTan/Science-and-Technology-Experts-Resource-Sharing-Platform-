@@ -72,6 +72,7 @@ class userController extends Controller
         {
             $this->folder->newFolder($user_id,'expert');
             $this->folder->newFolder($user_id,'paper');
+			$this->folder->newFolder($user_id,'patent');
         }
         return response()->json(['data'=>$user_id]);
     }
