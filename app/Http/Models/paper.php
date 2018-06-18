@@ -43,4 +43,8 @@ class paper extends Model
         return $this->where('first_author_id', $expert_id)->get();
     }
 
+    public function hasManyApplies()
+    {
+        return $this->hasMany(paper_apply::class, 'paper_id', 'paper_id');
+    }
 }
