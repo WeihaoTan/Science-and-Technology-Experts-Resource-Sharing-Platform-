@@ -26,7 +26,7 @@ class adminController extends Controller{
     public function showAuthenticationList(Request $request){
         $admin_id = $request->input('admin_id');
         $authentication = new Authentication();
-        return $authentication->showAuthentication($admin_id);
+        return $authentication->showAuthenticationList($admin_id);
     }
 
     public function reviewAuthentication(Request $request){
