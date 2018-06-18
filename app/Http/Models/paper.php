@@ -17,17 +17,23 @@ class paper extends Model
     protected $table = "paper";
     protected $primaryKey = "paper_id";
     public $timestamps=false;
-    ////论文列表
     public function paperList(array $request){
         return $this::where('paper_keywords','like','%'.$request['paper_keywords'].'%')
                     ->where('paper_name','like','%'.$request['paper_name'].'%')
                     ->whereBetween('publish_time',[$request['start_time'],$request['end_time']])
+                    ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
+                    ->select('paper_id','access','paper_name','expert_name',
+                        'first_author_id','publish_time','abstract','url','paper_keywords','type')
                     ->get();
     }
     ////某篇论文所有信息
     public function paperInfo(int $id)
     {
-        return $this::where('paper_id', $id)->get();
+        return $this::where('paper_id', $id)
+        ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
+        ->select('paper_id','access','paper_name','expert_name',
+                 'first_author_id','publish_time','abstract','url','paper_keywords','type')
+        ->get();
 
     }
     /**
