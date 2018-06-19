@@ -13,12 +13,23 @@ class paper_apply extends Model
     public $timestamps=false;
 
     /**
-     * 查询申请历史
+     * 查询申请历史，包括论文详细信息和作者
      * @param $id
      * @return mixed
      */
     public function getHistorybyUser($id)
     {
-        return $this::where('user_id',$id)->orderBy('request_time','desc')->get();
+        $info=$this::join('paper','paper_apply.paper_id','=','paper.paper_id')
+                    ->join('expert','expert.expert_id','=','paper.first_author_id')
+                    ->select('paper_apply.status','paper_apply.info','paper_apply.request_time','paper_apply.expert_response','paper.paper_name','paper.url','expert.expert_name')
+                    ->where('paper_apply.user_id',$id)->orderBy('request_time','desc')->get();
+        #echo $info;
+        return $info;
+        #return $this::where('user_id',$id)->orderBy('request_time','desc')->get();
+    }
+
+    public function belongsToPaper()
+    {
+        return $this->belongsTo(paper::class,'paper_id','paper_id');
     }
 }

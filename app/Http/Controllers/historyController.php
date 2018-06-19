@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 use App\Http\Models;
 use App\Http\Controllers;
+use App\Paper;
 use Illuminate\Http\Request;
 class historyController extends Controller
 {
