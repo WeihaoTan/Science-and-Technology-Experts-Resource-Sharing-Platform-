@@ -21,6 +21,7 @@ class paper_apply extends Model
     {
         $info=$this::join('paper','paper_apply.paper_id','=','paper.paper_id')
                     ->join('expert','expert.expert_id','=','paper.first_author_id')
+                    ->select('paper_apply.status','paper_apply.info','paper_apply.request_time','paper_apply.expert_response','paper.paper_name','paper.url','expert.expert_name')
                     ->where('paper_apply.user_id',$id)->orderBy('request_time','desc')->get();
         #echo $info;
         return $info;
