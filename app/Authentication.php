@@ -16,7 +16,9 @@ class Authentication extends Model
     public $timestamps = false;
 
     public function showAuthenticationList($admin_id){
-        return $this->all();
+        return $this ->join('expert', 'authentication_examing.user_id', '=', 'expert.user_id')
+            ->select('expert.expert_id', 'authentication_examing.auth_id', 'authentication_examing.user_id', 'authentication_examing.auth_info', 'authentication_examing.auth_state')
+            ->get();
     }
 
     public function showAuthentication($auth_id){
