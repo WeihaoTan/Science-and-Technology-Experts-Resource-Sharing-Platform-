@@ -14,6 +14,7 @@ use App\Http\Models\folder;
 use App\Http\Models\user;
 use function foo\func;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class userController extends Controller
 {
@@ -56,7 +57,13 @@ class userController extends Controller
      */
     public  function login(Request $request)
     {
-        return response()->json(['data'=>(int)($this->userModel->login($request['name'],$request['passwd']))]);
+        $ret=(int)($this->userModel->login($request['name'],$request['passwd']));
+        if($ret != -1)
+        {
+            session(['user'=>$request['name']]);
+            //echo $ret;
+        }
+        return response()->json(['data'=>$ret]);
     }
 
     /**

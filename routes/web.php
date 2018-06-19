@@ -59,7 +59,7 @@ Route::post('modProfile','userController@modProfile');
  */
 
 #任务系统
-Route::get('/task', 'user_taskController@getTaskbyUser');
+Route::get('/task', 'user_taskController@getTaskbyUser')->middleware(\App\Http\Middleware\checkLogin::class);
 Route::post('/task/receiveCredit', 'userController@reveiveCredit');
 Route::get('/history/browsing', 'historyController@getHistorybyUser');
 Route::post('/history/browsing/submit', 'historyController@setHistorybyUser');
