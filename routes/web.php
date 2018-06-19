@@ -45,6 +45,13 @@ Route::get('testData', function () {
     return view('testData');
 });
 
+//是否登陆
+Route::get('/checkLogin', function () {
+    if(session('user'))
+        return response(['status'=>1]);
+    return response(['status'=>0]);
+});
+
 
 /**
  * 舍弃或者重定向的路由：
