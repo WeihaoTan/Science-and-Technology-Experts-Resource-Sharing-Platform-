@@ -20,7 +20,12 @@ class Authentication extends Model
     }
 
     public function showAuthentication($auth_id){
-        return $this->where('auth_id', $auth_id)->get();
+        return $this->where('auth_id', $auth_id)
+            ->join('expert', 'authentication_examing.user_id', '=', 'expert.user_id')
+            ->select('expert.expert_id', 'authentication_examing.auth_id', 'authentication_examing.user_id', 'authentication_examing.auth_info', 'authentication_examing.auth_state')
+            ->get();
+
+
     }
 
     public function reviewAuthentication($auth_id, $status){
