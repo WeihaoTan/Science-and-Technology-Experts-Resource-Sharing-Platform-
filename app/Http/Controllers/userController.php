@@ -66,6 +66,11 @@ class userController extends Controller
         return response()->json(['data'=>$ret]);
     }
 
+    public function logout(Request $request)
+    {
+        session(['user'=>null]);
+    }
+
     /**
      * 注册
      * @param Request $request
