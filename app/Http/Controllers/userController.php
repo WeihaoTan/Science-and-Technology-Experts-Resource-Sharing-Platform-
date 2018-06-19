@@ -10,6 +10,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Models\admin;
 use App\Http\Models\folder;
 use App\Http\Models\user;
 use function foo\func;
@@ -20,9 +21,11 @@ class userController extends Controller
 {
     protected $userModel;
     protected $folder;
+    protected $admin;
     public function __construct(){
         $this->userModel = new user();
         $this->folder=new folder();
+        $this->admin=new admin();
     }
     public function getProfile(Request $request){
         return response()->json([
@@ -57,16 +60,15 @@ class userController extends Controller
      */
     public  function login(Request $request)
     {
-        $ret=(int)($this->userModel->login($request['name'],$request['passwd']));
+        $ret=max((int)($this->userModel->login($request['name'],$request['passwd'])),$this->admin->login($request['name'],$request['passwd']));
         if($ret != -1)
         {
             session(['user'=>$request['name']]);
-            //echo $ret;
         }
         return response()->json(['data'=>$ret]);
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         session(['user'=>null]);
     }
@@ -78,6 +80,12 @@ class userController extends Controller
      */
     public function  signup(Request $request)
     {
+        //不能与管理员撞号
+        if($this->admin->find($request['name']))
+        {
+            return response()->json(['data'=>-1]);
+        }
+
         $user_id=(int)($this->userModel->signup($request['name'],$request['mail'],$request['passwd']));
         #echo $user_id;
         if($user_id != -1)
