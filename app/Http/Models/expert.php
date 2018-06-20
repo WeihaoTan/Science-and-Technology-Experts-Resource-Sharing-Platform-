@@ -22,7 +22,7 @@ class expert extends Model
 
     ////通过专家名称获取
     public function expertList(string $expertName){
-        return $this::where('expert_name','LIKE',$expertName)->get();
+        return $this::where('expert_name','LIKE',$expertName)->paginate(20);
     }
     ////取得某个专家的信息
     public function expertInfo(int $id){
