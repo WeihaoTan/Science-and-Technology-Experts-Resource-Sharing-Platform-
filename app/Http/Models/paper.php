@@ -24,7 +24,7 @@ class paper extends Model
                     ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
                     ->select('paper_id','access','paper_name','expert_name',
                         'first_author_id','publish_time','abstract','url','paper_keywords','type')
-                    ->get();
+                    ->paginate(20);
     }
     ////某篇论文所有信息
     public function paperInfo(int $id)
