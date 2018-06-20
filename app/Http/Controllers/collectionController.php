@@ -55,6 +55,14 @@ class collectionController extends Controller
         return response()->json(['status'=>1,'msg'=>'success','data'=>$this->collection->viewCollectionsbyFolder($userid,$folder_id)->toArray()]);
     }
 
+    public function viewPatent(Request $request)
+    {
+        $userid=$request['user_id'];
+        $title='patent';
+        $folder_id=$this->folder->getFolderIDbyTitle($userid,$title);
+        return response()->json(['status'=>1,'msg'=>'success','data'=>$this->collection->viewCollectionsbyFolder($userid,$folder_id)->toArray()]);
+    }
+
     /**
      * 查看其他收藏夹
      * @param Request $request
