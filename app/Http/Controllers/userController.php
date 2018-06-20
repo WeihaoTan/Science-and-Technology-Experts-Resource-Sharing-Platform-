@@ -11,8 +11,12 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Models\admin;
+use App\Http\Models\expert;
 use App\Http\Models\folder;
+use App\Http\Models\keyword;
 use App\Http\Models\user;
+use App\Http\Models\paper;
+use App\Http\Models\patent;
 use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -96,4 +100,28 @@ class userController extends Controller
         }
         return response()->json(['data'=>$user_id]);
     }
+
+    public function showRecommendExpert()
+    {
+        $expert = new expert();
+        return $expert->showRecommendExpert();
+    }
+
+
+    public function showRecommendPatent()
+    {
+        $patent = new patent();
+        return $patent->showRecommendPatent();
+    }
+    public function showRecommendPaper()
+    {
+        $paper = new paper();
+        return $paper->showRecommendPaper();
+    }
+    public function showRecommendKeyword()
+    {
+        $keyword = new keyword();
+        return $keyword->showRecommendkeyword();
+    }
+
 }

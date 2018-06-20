@@ -2,7 +2,7 @@
     <head>
         <title>hello</title>
     </head>
-    <form action="admin/showAuthenticationList" method="get">
+    <form action="user/recommendKeyword" method="get">
         <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
         testData1: <input type="text" name="admin_id" />
         testData2: <input type="text" name="title" />

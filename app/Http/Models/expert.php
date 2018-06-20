@@ -57,4 +57,10 @@ class expert extends Model
                 ->update(['user_id' => $user_id]);
         }
     }
+    public function showRecommendExpert()
+    {
+        return $this->where('expert_id', '<', 20000)
+            ->get();
+    }
+
 }

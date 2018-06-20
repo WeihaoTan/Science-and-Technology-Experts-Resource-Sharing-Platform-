@@ -38,4 +38,9 @@ class patent extends Model
     public function expertDelete($patent_id){
         return $this->where('patent_id', $patent_id)->delete();
     }
+
+    public function showRecommendPatent()
+    {
+        return $this->where('patent_id', '<', '20')->get();
+    }
 }

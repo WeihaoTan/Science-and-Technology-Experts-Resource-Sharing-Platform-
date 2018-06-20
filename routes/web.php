@@ -167,6 +167,17 @@ Route::group([],function ()
     //（管理员）查看反馈详情
     Route::get('admin/showFeedback', 'adminController@showFeedback');
 
+    //主页推荐专家
+    Route::get('user/recommendExpert', 'userController@showRecommendExpert');
+
+    //主页推荐专利
+    Route::get('user/recommendPatent', 'userController@showRecommendPatent');
+
+    //主页推荐论文
+    Route::get('user/recommendPaper', 'userController@showRecommendPaper');
+
+    //主页推荐关键词
+    Route::get('user/recommendKeyword', 'userController@showRecommendKeyword');
 });
 
 

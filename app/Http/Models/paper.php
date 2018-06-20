@@ -53,4 +53,10 @@ class paper extends Model
     {
         return $this->hasMany(paper_apply::class, 'paper_id', 'paper_id');
     }
+
+    public function showRecommendPaper()
+    {
+        return $this->where('paper_id', '<', '20')->get();
+    }
+
 }
