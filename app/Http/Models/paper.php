@@ -28,12 +28,16 @@ class paper extends Model
     }
     ////某篇论文所有信息
     public function paperInfo(int $id)
-    {
-        return $this::where('paper_id', $id)
+    {   $paper_key = new paper_key();
+        $paper_ref = new paper_ref();
+        $paperKeywords = collect(['paper_keys'=>$paper_key::where('paper_id',$id)->get()]); //论文关键词
+        $paperRefs = collect(['paper_refs'=>$paper_ref::where('paper_id',$id)->get()]);
+        $info =  $this::where('paper_id', $id)
         ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
         ->select('paper_id','access','paper_name','expert_name',
-                 'first_author_id','publish_time','abstract','url','paper_keywords','type')
+                 'first_author_id','publish_time','abstract','url','type')
         ->get();
+        return $paperKeywords->merge($paperRefs)->merge($info);
 
     }
     /**
