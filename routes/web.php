@@ -29,6 +29,9 @@ Route::get('paperList','paperController@getPaperList');
 //获得某篇论文的所有信息
 Route::get('paperInfo','paperController@getPaperInfo');
 
+//高级搜索
+Route::get('advancedSearch','paperController@advancedSearch');
+
 //专利
 //获得专利列表
 Route::get('patentList','patentController@getPatentList');
