@@ -39,4 +39,5 @@ class paperApply extends Model
             ->update(['status' => $status, 'expert_response' => $expert_response]);
         //若成功还应该将论文加入用户的收藏夹，暂未实现，同时专家还可以上传论文
     }
+
 }

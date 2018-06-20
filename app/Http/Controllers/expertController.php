@@ -51,13 +51,13 @@ class expertController extends Controller{
         $expert_id = $request->input('expert_id');
         $institution = $request->input('institution');
         $title = $request->input('title');
-        $educational_experience = $request->input('educational_experience');
+        //$educational_experience = $request->input('educational_experience');
         $occupational_experience = $request->input('occupational_experience');
         $award_winning_experience = $request->input('award_winning_experience');
         $field = $request->input('field');
         $expert_name = $request->input('expert_name');
         $expert = new Expert();
-        return $expert->modInfo($expert_id, $institution, $title, $educational_experience,
+        return $expert->modInfo($expert_id, $institution, $title,
             $occupational_experience, $award_winning_experience, $field, $expert_name);
     }
     //专家查看申请信息
