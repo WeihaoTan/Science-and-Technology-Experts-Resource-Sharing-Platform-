@@ -102,6 +102,8 @@ Route::group([],function ()
     Route::get('/collection/expert', 'collectionController@viewExpert');
     #查看收藏的论文
     Route::get('/collection/paper', 'collectionController@viewPaper');
+    #查看收藏的专利
+    Route::get('/collection/patent', 'collectionController@viewPatent');
     #查看其他收藏夹
     Route::get('/collection/other', 'collectionController@viewOther');
     #新建收藏夹
