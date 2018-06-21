@@ -21,7 +21,8 @@ class checkLogin
         if(!session('user'))
         {
             #return view('welcome');
-            return redirect('/');
+            #return redirect('/');
+            return redirect()->back();
         }
         return $next($request);
     }
