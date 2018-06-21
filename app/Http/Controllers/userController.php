@@ -64,12 +64,26 @@ class userController extends Controller
      */
     public  function login(Request $request)
     {
-        $ret=max((int)($this->userModel->login($request['name'],$request['passwd'])),$this->admin->login($request['name'],$request['passwd']));
+        $uid=$this->userModel->login($request['name'],$request['passwd']);
+        $aid=$this->admin->login($request['name'],$request['passwd']);
+        $type=null;
+        if($uid!=-1)
+        {
+            if($this->userModel->isExpert($uid))
+                $type="expert";
+            else
+                $type="user";
+        }
+
+        if(aid!=-1)
+            $type="admin";
+
+        $ret=max($uid,$aid);
         if($ret != -1)
         {
             session(['user'=>$request['name']]);
         }
-        return response()->json(['data'=>$ret]);
+        return response()->json(['id'=>$ret,'type'=>$type]);
     }
 
     public function logout()

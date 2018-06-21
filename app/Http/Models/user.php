@@ -54,6 +54,11 @@ class user extends Model
             return -1;
     }
 
+    public function isExpert($uid)
+    {
+        return (int)$this::select('is_expert')->whereRaw('user_id = ?',[$uid])->get()[0]['is_expert'];
+    }
+
     /**
      * 注册，用户名与邮箱任何一个都不能冲突，注册成功返回用户id，失败返回-1
      * @param $name
