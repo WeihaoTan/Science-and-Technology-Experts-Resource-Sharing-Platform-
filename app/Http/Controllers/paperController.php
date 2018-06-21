@@ -11,7 +11,9 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Models\paper;
+use App\Http\Models\similarPaper;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Array_;
 
 class paperController extends Controller
 {   protected $paperModel;
@@ -32,6 +34,29 @@ class paperController extends Controller
             'data'=>$this->paperModel
                          ->paperList($this->requestData)]);
     }
+
+    public  function getSimilarPaper(Request $request)
+    {
+        $paper_id = $request->input('paper_id');
+        $similarPaper = new  similarPaper();
+        $similarPaper->getSimilarPaper($paper_id);
+
+        $similarPaperStr = $similarPaper->getSimilarPaper($paper_id);
+        $papers = explode(', ', $similarPaperStr);
+
+        //return $papers;
+
+        $result = Array(count($papers));
+        $paper = new  paper();
+        for ($x=0; $x<count($papers); $x++) {
+            $result[$x] =  $paper->paperInfo($papers[$x]);
+        }
+        return $result;
+
+    }
+
+
+
 
     ////某篇论文的所有信息
     public function getPaperInfo(Request $request){

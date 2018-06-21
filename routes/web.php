@@ -28,6 +28,9 @@ Route::get('expertInfo','expertController@getexpertInfo');
 Route::get('paperList','paperController@getPaperList');
 //获得某篇论文的所有信息
 Route::get('paperInfo','paperController@getPaperInfo');
+//获得某篇论文的相似论文
+Route::get('similarPaper','paperController@getSimilarPaper');
+
 
 //高级搜索
 Route::get('advancedSearch','paperController@advancedSearch');
