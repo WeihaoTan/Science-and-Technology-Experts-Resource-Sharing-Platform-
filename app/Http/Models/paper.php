@@ -19,7 +19,7 @@ class paper extends Model
     public $timestamps=false;
      ////论文列表
     public function paperList(array $request){
-        return $this::whereRaw('MATCH(paper_name) AGAINST(?)',$request['paper_name'])
+        return $this::whereRaw('MATCH(paper_name) AGAINST(? IN NATURAL LANGUAGE MODE)',$request['paper_name'])
                     ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
                     ->select('paper_id','access','paper_name','expert_name',
                         'first_author_id','publish_time','abstract','url','type')
@@ -61,11 +61,11 @@ class paper extends Model
     {
         return $this->where('paper_id', '<', '20')->get();
     }
-    public function advancedPaperList(Request $request){
+    public function advancedPaperList(array $request){
         $paper_key = new paper_key();
         $paper_id = $paper_key->whereIn('key',[$request['keyword1'],$request['keyword2'],$request['keyword3']])->select('paper_id')->distinct()->get();
         return $this::whereIn('paper_id',$paper_id)
-            ->whereRaw('MATCH(paper_name) AGAINST(?)',$request['paper_name'])
+            ->whereRaw('MATCH(paper_name) AGAINST(? IN NATURAL LANGUAGE MODE)',$request['paper_name'])
             ->whereBetween('publish_time',[$request['start_time'],$request['end_time']])
             ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
             ->select('paper_id','access','paper_name','expert_name',
