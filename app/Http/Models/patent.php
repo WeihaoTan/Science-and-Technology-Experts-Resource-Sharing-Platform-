@@ -17,7 +17,13 @@ class patent extends Model
     protected $primaryKey = "patent_id";
 
     public function patentList(string $title){
-        return $this::where('title','like','%'.$title.'%')->paginate(10);
+        return $this::whereRaw('MATCH(patent.title) AGAINST(?)',$title)
+                    ->join('expert','patent.expert_id','expert.expert_id')
+                    ->select('patent_id','expert.expert_name','patent.expert_id','patent.title','information','supplynumber'
+                        ,'supplydate','publicnumber','publicdate','supplyer','address','co_supplyer',
+                        'inventor','intersupply','interrelease','enterdate','agency','agent','osupplynumber',
+                        'provincenumber','mainitem','pages','mainclass','patentclass')
+                    ->paginate(10);
     }
     public function patentInfo(int $id){
         return $this::where('patent_id',$id)->get();
