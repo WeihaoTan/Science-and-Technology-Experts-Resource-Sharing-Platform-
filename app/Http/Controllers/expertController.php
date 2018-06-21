@@ -51,7 +51,6 @@ class expertController extends Controller{
         $expert_id = $request->input('expert_id');
         $institution = $request->input('institution');
         $title = $request->input('title');
-        //$educational_experience = $request->input('educational_experience');
         $occupational_experience = $request->input('occupational_experience');
         $award_winning_experience = $request->input('award_winning_experience');
         $field = $request->input('field');

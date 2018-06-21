@@ -17,6 +17,7 @@ class expert extends Model
 {
     protected $table = "expert";
     //protected $primaryKey = "expert_id";
+    public $timestamps = false;
 
     ////通过专家名称获取
     public function expertList(string $expertName){
@@ -41,10 +42,8 @@ class expert extends Model
     }
     public function modInfo($expert_id, $institution, $title, $occupational_experience, $award_winning_experience, $field, $expert_name){
         return $this->where('expert_id', $expert_id)
-            ->update(['institution' => $institution, 'title' => $title,
-               'occupational_experience' => $occupational_experience, 'award_winning_experience' => $award_winning_experience,
-                'field' => $field, 'expert_name' => $expert_name]);
-            //->update(['title' => $title]);
+                ->update(['institution' => $institution, 'title' => $title, 'occupational_experience' => $occupational_experience,
+                    'award_winning_experience' => $award_winning_experience, 'field' => $field, 'expert_name' => $expert_name]);
 }
 
     public function reviewAuthentication($user_id, $expert_id, $status)
