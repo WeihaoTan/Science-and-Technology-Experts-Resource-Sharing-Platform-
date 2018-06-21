@@ -9,16 +9,14 @@
 
 namespace App\Http\Models;
 
-use Illuminate\Support\Collection;
+
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Node\Directory;
-use SebastianBergmann\Environment\Console;
+
 
 class expert extends Model
 {
     protected $table = "expert";
-    protected $primaryKey = "expert_id";
+    //protected $primaryKey = "expert_id";
 
     ////通过专家名称获取
     public function expertList(string $expertName){
@@ -43,18 +41,19 @@ class expert extends Model
     }
     public function modInfo($expert_id, $institution, $title, $occupational_experience, $award_winning_experience, $field, $expert_name){
         return $this->where('expert_id', $expert_id)
-            //->update(['institution' => $institution, 'title' => $title,
-              // 'occupational_experience' => $occupational_experience, 'award_winning_experience' => $award_winning_experience,
-            //    'field' => $field, 'expert_name' => $expert_name]);
-            ->update(['title' => $title]);
+            ->update(['institution' => $institution, 'title' => $title,
+               'occupational_experience' => $occupational_experience, 'award_winning_experience' => $award_winning_experience,
+                'field' => $field, 'expert_name' => $expert_name]);
+            //->update(['title' => $title]);
 }
 
     public function reviewAuthentication($user_id, $expert_id, $status)
     {
         if ($status == 1)
         {
-            $this->where('expert_id', $expert_id)
-                ->update(['title' => $user_id]);
+            return $this->where('expert_id', $expert_id)
+                //->value('user_id');
+                ->update(['user_id' => 2]);
                 //->get();
         }
     }
@@ -63,5 +62,4 @@ class expert extends Model
         return $this->where('expert_id', '<', 20000)
             ->get();
     }
-
 }

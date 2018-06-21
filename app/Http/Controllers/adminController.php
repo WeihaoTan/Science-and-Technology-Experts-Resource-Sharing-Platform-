@@ -41,9 +41,8 @@ class adminController extends Controller{
         $user->reviewAuthentication($user_id, $status);
 
         $expert = new \App\Http\Models\expert();
-        $expert->reviewAuthentication($user_id, $expert_id, $status);
+        return $expert->reviewAuthentication($user_id, $expert_id, $status);
 
-        return 1;
     }
 
     public function showFeedbackList(Request $request){
