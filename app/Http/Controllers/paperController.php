@@ -27,7 +27,7 @@ class paperController extends Controller
     /// 关键词、题名
     /// 发表时间
     public function getPaperList(Request $request){
-        $this->requestData += array('paper_name'=>$request->input('paper_name','%'));
+        $this->requestData += array('paperName'=>$request->input('paperName','%'));
         return response()->json([
             'status'=>1,
             'msg'=>'success',
