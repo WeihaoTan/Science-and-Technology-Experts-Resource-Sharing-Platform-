@@ -57,4 +57,24 @@ class paperController extends Controller
     {
         return response()->json(['status'=>1,'msg'=>'success','data'=>$this->paperModel->download($request['paper_id'])]);
     }
+    public function advancedSearch(Request $request){
+        $keywords = [];
+        $keywords += array('keyword1'=>$request->input('keyword1','%'));
+        $keywords +=array('keyword2'=>$request->input('keyword2','%'));
+        $keywords +=array('keyword3'=>$request->input('keyword3','%'));
+        $keywords += array('paper_keywords'=>$request->input('paper_keywords','%'));
+        $keywords += array('paper_name'=>$request->input('paper_name','%'));
+
+        //时间范围
+        $keywords += array('start_time'=>$request
+            ->input('start_time','1970-1-1'));
+        $keywords += array('end_time'=>$request
+            ->input('end_time',date('Y-m-d',time())));
+
+        return response()->json([
+            'status'=>1,
+            'msg'=>'success',
+            'data'=>$this->paperModel
+                ->advancedPaperList($keywords)]);
+    }
 }

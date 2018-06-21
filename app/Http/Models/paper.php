@@ -24,16 +24,20 @@ class paper extends Model
                     ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
                     ->select('paper_id','access','paper_name','expert_name',
                         'first_author_id','publish_time','abstract','url','paper_keywords','type')
-                    ->get();
+                    ->paginate(10);
     }
     ////某篇论文所有信息
     public function paperInfo(int $id)
-    {
-        return $this::where('paper_id', $id)
+    {   $paper_key = new paper_key();
+        $paper_ref = new paper_ref();
+        $paperKeywords = collect(['paper_keys'=>$paper_key::where('paper_id',$id)->get()]); //论文关键词
+        $paperRefs = collect(['paper_refs'=>$paper_ref::where('paper_id',$id)->get()]);
+        $info =  $this::where('paper_id', $id)
         ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
         ->select('paper_id','access','paper_name','expert_name',
-                 'first_author_id','publish_time','abstract','url','paper_keywords','type')
+                 'first_author_id','publish_time','abstract','url','type')
         ->get();
+        return $paperKeywords->merge($paperRefs)->merge($info);
 
     }
     /**
@@ -58,5 +62,16 @@ class paper extends Model
     {
         return $this->where('paper_id', '<', '20')->get();
     }
+    public function advancedPaperList(array $request){
+        $paper_key = new paper_key();
+        $paper_id = $paper_key->whereIn('key',[$request['keyword1'],$request['keyword2'],$request['keyword3']])->select('paper_id')->distinct()->get();
+        return $this::whereIn('paper_id',$paper_id)
+                    ->where('paper_name','like','%'.$request['paper_name'].'%')
+                    ->whereBetween('publish_time',[$request['start_time'],$request['end_time']])
+                    ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
+                    ->select('paper_id','access','paper_name','expert_name',
+                            'first_author_id','publish_time','abstract','url','paper_keywords','type')
+                    ->paginate(10);
 
+    }
 }
