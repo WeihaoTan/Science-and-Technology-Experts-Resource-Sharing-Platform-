@@ -25,14 +25,7 @@ class paperController extends Controller
     /// 关键词、题名
     /// 发表时间
     public function getPaperList(Request $request){
-        $this->requestData += array('paper_keywords'=>$request->input('paper_keywords','%'));
         $this->requestData += array('paper_name'=>$request->input('paper_name','%'));
-
-        //时间范围
-        $this->requestData += array('start_time'=>$request
-                                  ->input('start_time','1970-1-1'));
-        $this->requestData += array('end_time'=>$request
-                                  ->input('end_time',date('Y-m-d',time())));
         return response()->json([
             'status'=>1,
             'msg'=>'success',
