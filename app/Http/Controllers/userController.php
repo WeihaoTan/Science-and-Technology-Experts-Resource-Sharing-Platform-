@@ -75,7 +75,7 @@ class userController extends Controller
                 $type="user";
         }
 
-        if(aid!=-1)
+        if($aid!=-1)
             $type="admin";
 
         $ret=max($uid,$aid);
