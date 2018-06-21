@@ -55,7 +55,6 @@ class paperController extends Controller
         $keywords += array('keyword1'=>$request->input('keyword1','%'));
         $keywords +=array('keyword2'=>$request->input('keyword2','%'));
         $keywords +=array('keyword3'=>$request->input('keyword3','%'));
-        $keywords += array('paper_keywords'=>$request->input('paper_keywords','%'));
         $keywords += array('paper_name'=>$request->input('paper_name','%'));
 
         //时间范围
