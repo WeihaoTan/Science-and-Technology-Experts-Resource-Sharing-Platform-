@@ -64,9 +64,6 @@ class paper extends Model
         return $this::whereIn('paper_id',$paper_id)
             ->whereRaw('MATCH(paper_name) AGAINST(? IN NATURAL LANGUAGE MODE)',$request['paper_name'])
             ->whereBetween('publish_time',[$request['start_time'],$request['end_time']])
-            ->join('expert', 'expert.expert_id', '=', 'paper.first_author_id')
-            ->select('paper_id','access','paper_name','expert_name',
-                'first_author_id','publish_time','abstract','url','paper_keywords','type')
             ->paginate(10);
     }
 }
