@@ -61,7 +61,7 @@ class paper extends Model
     {
         return $this->where('paper_id', '<', '20')->get();
     }
-    public function advancedPaperList(Request $request){
+    public function advancedPaperList(array $request){
         $paper_key = new paper_key();
         $paper_id = $paper_key->whereIn('key',[$request['keyword1'],$request['keyword2'],$request['keyword3']])->select('paper_id')->distinct()->get();
         return $this::whereIn('paper_id',$paper_id)
