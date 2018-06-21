@@ -26,7 +26,13 @@ class patent extends Model
                     ->paginate(10);
     }
     public function patentInfo(int $id){
-        return $this::where('patent_id',$id)->get();
+        return $this::where('patent_id',$id)
+                    ->join('expert','patent.expert_id','expert.expert_id')
+                    ->select('patent_id','expert.expert_name','patent.expert_id','patent.title','information','supplynumber'
+                        ,'supplydate','publicnumber','publicdate','supplyer','address','co_supplyer',
+                            'inventor','intersupply','interrelease','enterdate','agency','agent','osupplynumber',
+                            'provincenumber','mainitem','pages','mainclass','patentclass')
+                    ->get();
     }
     public function expertShow($expert_id){
         return $this->where('expert_id', $expert_id)->get();
