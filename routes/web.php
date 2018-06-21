@@ -67,7 +67,7 @@ Route::get('/checkLogin', function () {
 /**
  * 需要认证的路由 'middleware'=>'checkLogin'
  */
-Route::group([],function ()
+Route::group(['middleware'=>'checkLogin'],function ()
 {
     #注销
     Route::get('/logout', 'userController@logout');
@@ -155,21 +155,9 @@ Route::group([],function ()
     //（专家）添加拥有的专利
     Route::post('expert/addPatent', 'expertController@addPatent');
 
-    //（管理员）查看认证列表
-    Route::get('admin/showAuthenticationList', 'adminController@showAuthenticationList');
-
-    //（管理员）查看认证
-    Route::get('admin/showAuthentication', 'adminController@showAuthentication');
-
-    //（管理员）审核认证
-    Route::post('admin/reviewAuthentication', 'adminController@reviewAuthentication');
 
 
-    //（管理员）查看反馈列表
-    Route::get('admin/showFeedbackList', 'adminController@showFeedbackList');
 
-    //（管理员）查看反馈详情
-    Route::get('admin/showFeedback', 'adminController@showFeedback');
 
     //主页推荐专家
     Route::get('user/recommendExpert', 'userController@showRecommendExpert');
@@ -183,5 +171,22 @@ Route::group([],function ()
     //主页推荐关键词
     Route::get('user/recommendKeyword', 'userController@showRecommendKeyword');
 });
+/**
+ * 暂时取消验证的
+ */
+
+//（管理员）查看认证列表
+Route::get('admin/showAuthenticationList', 'adminController@showAuthenticationList');
+
+//（管理员）查看认证
+Route::get('admin/showAuthentication', 'adminController@showAuthentication');
+
+//（管理员）审核认证
+Route::post('admin/reviewAuthentication', 'adminController@reviewAuthentication');
 
 
+//（管理员）查看反馈列表
+Route::get('admin/showFeedbackList', 'adminController@showFeedbackList');
+
+//（管理员）查看反馈详情
+Route::get('admin/showFeedback', 'adminController@showFeedback');
