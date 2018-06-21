@@ -67,7 +67,7 @@ Route::get('/checkLogin', function () {
 /**
  * 需要认证的路由
  */
-Route::group([],function ()
+Route::group(['middleware'=>'checkLogin'],function ()
 {
     #注销
     Route::get('/logout', 'userController@logout');
