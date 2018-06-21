@@ -25,15 +25,11 @@ class Authentication extends Model
             ->select('expert.expert_id', 'authentication_examing.auth_id', 'authentication_examing.user_id', 'authentication_examing.auth_info', 'authentication_examing.auth_state')
             ->paginate(10);
 
-
     }
 
     public function reviewAuthentication($auth_id, $status){
-        if ($status == 1)
-        {
             $this->where('auth_id', $auth_id)
                 ->update(['auth_state' => $status]);
-        }
     }
 
 }
