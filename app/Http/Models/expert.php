@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 class expert extends Model
 {
     protected $table = "expert";
-    //protected $primaryKey = "expert_id";
+    protected $primaryKey = "expert_id";
     public $timestamps = false;
 
     ////通过专家名称获取
