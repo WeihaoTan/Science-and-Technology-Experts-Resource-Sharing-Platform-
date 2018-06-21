@@ -143,7 +143,6 @@ Route::group([],function ()
     //（专家）查看拥有的论文
     Route::get('expert/showPaper', 'expertController@showPaper');
 
-
     //（专家）查看拥有的专利
     Route::get('expert/showPatent', 'expertController@showPatent');
 

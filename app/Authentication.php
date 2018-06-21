@@ -32,7 +32,7 @@ class Authentication extends Model
         if ($status == 1)
         {
             $this->where('auth_id', $auth_id)
-                ->update(['status' => $status]);
+                ->update(['auth_state' => $status]);
         }
     }
 

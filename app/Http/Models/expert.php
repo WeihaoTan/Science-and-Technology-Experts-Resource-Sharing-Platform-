@@ -41,20 +41,21 @@ class expert extends Model
     public function showInfo($expert_id){
         return $this->where('expert_id', $expert_id)->get();
     }
-    public function modInfo($expert_id, $institution, $title,
-                            $occupational_experience, $award_winning_experience, $field, $expert_name){
+    public function modInfo($expert_id, $institution, $title, $occupational_experience, $award_winning_experience, $field, $expert_name){
         return $this->where('expert_id', $expert_id)
-            ->update(['institution' => $institution, 'title' => $title,
-                'occupational_experience' => $occupational_experience, 'award_winning_experience' => $award_winning_experience,
-                'field' => $field, 'expert_name' => $expert_name]);
-    }
+            //->update(['institution' => $institution, 'title' => $title,
+              // 'occupational_experience' => $occupational_experience, 'award_winning_experience' => $award_winning_experience,
+            //    'field' => $field, 'expert_name' => $expert_name]);
+            ->update(['title' => $title]);
+}
 
     public function reviewAuthentication($user_id, $expert_id, $status)
     {
         if ($status == 1)
         {
             $this->where('expert_id', $expert_id)
-                ->update(['user_id' => $user_id]);
+                ->update(['title' => $user_id]);
+                //->get();
         }
     }
     public function showRecommendExpert()
