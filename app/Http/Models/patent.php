@@ -17,7 +17,7 @@ class patent extends Model
     protected $primaryKey = "patent_id";
 
     public function patentList(string $title){
-        return $this::whereRaw('MATCH(patent.title) AGAINST(?)',$title)
+        return $this::whereRaw('MATCH(patent.title) AGAINST(? IN NATURAL LANGUAGE MODE)',$title)
                     ->join('expert','patent.expert_id','expert.expert_id')
                     ->select('patent_id','expert.expert_name','patent.expert_id','patent.title','information','supplynumber'
                         ,'supplydate','publicnumber','publicdate','supplyer','address','co_supplyer',
