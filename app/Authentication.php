@@ -16,7 +16,7 @@ class Authentication extends Model
     public $timestamps = false;
 
     public function showAuthenticationList($admin_id){
-        return $this->all();
+        return $this->paginate(10);
     }
 
     public function showAuthentication($auth_id){
